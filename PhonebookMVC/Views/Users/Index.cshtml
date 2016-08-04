@@ -1,0 +1,102 @@
+﻿@using PagedList.Mvc;
+@using PhonebookMVC.ViewModels.Users
+@model UsersListVM
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2>Users</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateEdit")
+</p>
+
+@using (Html.BeginForm("Index", "Users", FormMethod.Get))
+{
+    <p>
+        Search: @Html.TextBox("SearchString", Model.SearchString as string)
+        <input type="submit" value="Filter" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @{
+                //if (Model.SortOrder != null || Model.SortOrder != UserSorting.FirstNameAsc)
+                //{
+                //    Model.RouteDictionary.Remove("SortOrder");
+                //}
+
+                //else
+                //{
+                //    Model.RouteDictionary["SortOrder"] = UserSorting.FirstNameDesc;
+                //}
+
+                Model.RouteDictionary["SortOrder"] = Model.SortOrder == null || Model.SortOrder != UserSorting.FirstNameAsc ? UserSorting.FirstNameAsc : UserSorting.FirstNameDesc;
+                @Html.ActionLink("First Name", "Index", Model.RouteDictionary)
+            }
+        </th>
+        <th>
+            @{
+                Model.RouteDictionary["SortOrder"] = Model.SortOrder != UserSorting.LastNameAsc ? UserSorting.LastNameAsc : UserSorting.LastNameDesc;
+                @Html.ActionLink("Last Name", "Index", Model.RouteDictionary)
+            }
+        </th>
+        <th>
+            @{
+                Model.RouteDictionary["SortOrder"] = Model.SortOrder != UserSorting.UsernameAsc ? UserSorting.UsernameAsc : UserSorting.UsernameDesc;
+                @Html.ActionLink("Username", "Index", Model.RouteDictionary)
+            }
+        </th>
+        <th>
+            @{
+                Model.RouteDictionary["SortOrder"] = Model.SortOrder != UserSorting.EmailAsc ? UserSorting.EmailAsc : UserSorting.EmailDesc;
+                @Html.ActionLink("Email", "Index", Model.RouteDictionary)
+            }
+        </th>
+        <th>
+            Admin
+        </th>
+        <th>
+        </th>
+    </tr>
+
+    @foreach (var item in Model.PagedUsers)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAdmin)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "CreateEdit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID })
+                @if (PhonebookMVC.Services.AuthenticationService.LoggedUser.ID != item.ID)
+                {
+                    @Html.Raw("| ") @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+
+Page @(Model.PagedUsers.PageCount < Model.PagedUsers.PageNumber ? 0 : Model.PagedUsers.PageNumber) of @Model.PagedUsers.PageCount
+
+@Html.PagedListPager(Model.PagedUsers, page => Url.Action("Index", new { page, searchString = Model.SearchString, sortOrder = Model.SortOrder }))

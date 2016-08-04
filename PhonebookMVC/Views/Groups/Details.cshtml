@@ -1,0 +1,21 @@
+﻿@model PhonebookMVC.ViewModels.Groups.GroupsCreateEditVM
+
+<div>
+    <h4>Group</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        
+        <dt>
+            Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "CreateEdit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

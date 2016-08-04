@@ -1,0 +1,61 @@
+﻿@model PhonebookMVC.ViewModels.Users.UsersDetailsVM
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        @if (Model.ImageName != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.ImageName)
+            </dt>
+
+            <dd>
+                <img src="~/Images/@Model.ImageName" alt="Image" class="img-thumbnail" style="width: 15%" />
+            </dd>
+        }
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "CreateEdit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
