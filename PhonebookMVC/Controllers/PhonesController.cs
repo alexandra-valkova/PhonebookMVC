@@ -28,7 +28,7 @@ namespace PhonebookMVC.Controllers
             return contact != null;
         }
 
-        // INDEX     
+        // INDEX
 
         public ActionResult Index(int? id) //contactID
         {
@@ -109,7 +109,7 @@ namespace PhonebookMVC.Controllers
 
                     return View(p);
                 }
-            }            
+            }
 
             return HttpNotFound();
         }
@@ -158,7 +158,7 @@ namespace PhonebookMVC.Controllers
 
             phoneRepo.Save(phone);
 
-            return RedirectToAction("Index", new { id = phone.ContactID });            
+            return RedirectToAction("Index", new { id = phone.ContactID });
         }
 
         public ActionResult Delete(int? id) // phoneID
@@ -200,7 +200,7 @@ namespace PhonebookMVC.Controllers
                     phoneRepo.Delete(phone);
 
                     return RedirectToAction("Index", new { id = phone.ContactID });
-                } 
+                }
             }
 
             return HttpNotFound();

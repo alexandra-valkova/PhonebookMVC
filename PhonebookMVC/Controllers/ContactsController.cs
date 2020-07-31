@@ -110,7 +110,7 @@ namespace PhonebookMVC.Controllers
 
                     GroupRepository groupRepo = new GroupRepository();
 
-                    List<Group> contactGroups = contactRepo.GetAll().Where(c => c.ID == id).First().Groups;
+                    List<Group> contactGroups = contactRepo.GetAll(c => c.ID == id).First().Groups;
 
                     if (contactGroups.Count > 0)
                     {
@@ -124,7 +124,7 @@ namespace PhonebookMVC.Controllers
                             });
                         }
 
-                        model.Groups = checkBoxListItems; 
+                        model.Groups = checkBoxListItems;
                     }
 
                     return View(model);
@@ -184,9 +184,7 @@ namespace PhonebookMVC.Controllers
                     GroupRepository groupRepo = new GroupRepository();
 
                     List<Group> allGroups = groupRepo.GetAll(g => g.UserID == AuthenticationService.LoggedUser.ID);
-
-                    //List<Group> contactGroups = groupRepo.GetAll(g => g.Contacts.Contains(contact));
-                    List<Group> contactGroups = contactRepo.GetAll().Where(c => c.ID == id).First().Groups;
+                    List<Group> contactGroups = contactRepo.GetAll(c => c.ID == id).First().Groups;
 
                     List<CheckBoxListItem> checkBoxListItems = new List<CheckBoxListItem>();
 
@@ -196,7 +194,6 @@ namespace PhonebookMVC.Controllers
                         {
                             ID = group.ID,
                             Text = group.Name,
-                            //We should have already-selected genres be checked
                             IsChecked = contactGroups.Where(g => g.ID == group.ID).Any()
                         });
                     }
@@ -246,8 +243,10 @@ namespace PhonebookMVC.Controllers
             {
                 if (model.GroupIds != null)
                 {
-                    GroupRepository groupRepo = new GroupRepository();
-                    groupRepo.Context = contactRepo.Context;
+                    GroupRepository groupRepo = new GroupRepository
+                    {
+                        Context = contactRepo.Context
+                    };
                     groupRepo.DbSet = groupRepo.Context.Set<Group>();
 
                     if (contact.Groups != null)
@@ -299,7 +298,7 @@ namespace PhonebookMVC.Controllers
 
                     GroupRepository groupRepo = new GroupRepository();
 
-                    List<Group> contactGroups = contactRepo.GetAll().Where(c => c.ID == id).First().Groups;
+                    List<Group> contactGroups = contactRepo.GetAll(c => c.ID == id).First().Groups;
 
                     if (contactGroups.Count > 0)
                     {
@@ -335,7 +334,7 @@ namespace PhonebookMVC.Controllers
 
                 if (contact != null && contact.UserID == AuthenticationService.LoggedUser.ID)
                 {
-                    contact.Groups.Clear(); //one row took us like an hour to find!!! 
+                    contact.Groups.Clear();
                     contactRepo.Delete(contact);
 
                     return RedirectToAction("Index");

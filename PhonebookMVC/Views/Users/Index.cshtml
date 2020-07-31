@@ -2,7 +2,10 @@
 @using PhonebookMVC.ViewModels.Users
 @model UsersListVM
 
-<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@section styles
+{
+    <link href="@Url.Content("~/Content/PagedList.css")" rel="stylesheet" type="text/css" />
+}
 
 @{
     ViewBag.Title = "Users";
@@ -26,16 +29,6 @@
     <tr>
         <th>
             @{
-                //if (Model.SortOrder != null || Model.SortOrder != UserSorting.FirstNameAsc)
-                //{
-                //    Model.RouteDictionary.Remove("SortOrder");
-                //}
-
-                //else
-                //{
-                //    Model.RouteDictionary["SortOrder"] = UserSorting.FirstNameDesc;
-                //}
-
                 Model.RouteDictionary["SortOrder"] = Model.SortOrder == null || Model.SortOrder != UserSorting.FirstNameAsc ? UserSorting.FirstNameAsc : UserSorting.FirstNameDesc;
                 @Html.ActionLink("First Name", "Index", Model.RouteDictionary)
             }

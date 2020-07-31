@@ -1,16 +1,16 @@
 ﻿@model PhonebookMVC.ViewModels.Phones.PhoneCreateEditVM
 
-@{ 
+@{
     var title = Model == null || Model.ID == 0 ? "Create" : "Edit";
     ViewBag.Title = title;
 }
 
 <h2>@title</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>@Model.Contact.FirstName's Phone</h4>
         <hr />

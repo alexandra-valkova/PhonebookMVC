@@ -47,7 +47,7 @@
                 @foreach (var item in Model.Groups)
                 {
                     <div class="col-md-10">
-                        <input type="checkbox" id="group-@item.ID" name="GroupIds" value="@item.ID" @if (item.IsChecked) { @Html.Raw("checked") }/>
+                        <input type="checkbox" id="group-@item.ID" name="GroupIds" value="@item.ID" @if (item.IsChecked) { @Html.Raw("checked") } />
                         <label for="group-@item.ID">@item.Text</label>
                     </div>
                 }

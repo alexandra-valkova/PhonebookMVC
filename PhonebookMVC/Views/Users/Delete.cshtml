@@ -50,13 +50,14 @@
             </dt>
 
             <dd>
-                <img src="~/Images/@Model.ImageName" alt="Image" class="img-thumbnail" style="width: 15%" />
+                <img src="@Url.Content("~/Images/@Model.ImageName")" alt="Image" class="img-thumbnail" style="width: 15%" />
             </dd>
         }
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

@@ -24,7 +24,7 @@ namespace PhonebookMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(AccountLoginVM model)
         {
-            AuthenticationService.AuthenticateUser(model.Username, model.Password); 
+            AuthenticationService.AuthenticateUser(model.Username, model.Password);
 
             if (AuthenticationService.IsLogged)
             {

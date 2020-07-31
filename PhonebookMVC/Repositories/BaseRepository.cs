@@ -44,7 +44,7 @@ namespace PhonebookMVC.Repositories
                 Update(entity);
             }
             else
-            {                
+            {
                 Insert(entity);
             }
         }

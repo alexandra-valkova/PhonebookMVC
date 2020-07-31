@@ -2,7 +2,10 @@
 @using PhonebookMVC.ViewModels.Contacts
 @model ContactsListVM
 
-<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@section styles
+{
+    <link href="@Url.Content("~/Content/PagedList.css")" rel="stylesheet" type="text/css" />
+}
 
 @{
     ViewBag.Title = "Contacts";
@@ -27,16 +30,6 @@
     <tr>
         <th>
             @{
-                //if (Model.SortOrder != null && Model.SortOrder != ContactSorting.FirstNameAsc)
-                //{
-                //    Model.RouteDictionary.Remove("SortOrder");
-                //}
-
-                //else
-                //{
-                //    Model.RouteDictionary["SortOrder"] = ContactSorting.FirstNameDesc;
-                //}
-
                 Model.RouteDictionary["SortOrder"] = Model.SortOrder == null || Model.SortOrder != ContactSorting.FirstNameAsc ? ContactSorting.FirstNameAsc : ContactSorting.FirstNameDesc;
                 @Html.ActionLink("First Name", "Index", Model.RouteDictionary)
             }

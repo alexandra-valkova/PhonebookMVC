@@ -310,7 +310,7 @@ namespace PhonebookMVC.Controllers
 
             return RedirectToAction("Index");
         }
-                
+
         public ActionResult DeletePicture(string imageName, int? id)
         {
             string imagePath = Request.MapPath("~/Images/" + imageName);
