@@ -7,7 +7,7 @@
 <h2>Phones of @Model.Contact.FirstName @Model.Contact.LastName</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateEdit", new { contactId = Model.Contact.ID })
+    @Html.ActionLink("Create New", "CreateEdit", new { contactId = Model.Contact.ID }, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>

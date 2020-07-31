@@ -64,7 +64,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-4 col-md-8">
-                <input type="submit" value="Edit" class="btn btn-default" />
+                <input type="submit" value="Edit" class="btn btn-primary" />
             </div>
         </div>
     </div>
@@ -87,17 +87,10 @@
             </div>
         }
 
-        @*<div class="form-group">
-                    <div class="col-md-offset-4 col-md-8">
-                        <input type="submit" value="Upload" class="btn btn-default" />
-                    </div>
-                </div>
-            </div>*@
-
         <div class="form-group">
             <div class="col-md-offset-4 col-md-8">
-                <input type="submit" value="Upload" class="btn btn-default" />
-                <input type="submit" value="Delete" onclick="location.href='@Url.Action("DeletePicture", "Users", new { imageName = @Model.ImageName, id = Model.ID })'" class="btn btn-default" />
+                <input type="submit" value="Upload" class="btn btn-success" />
+                <input type="submit" value="Remove" onclick="location.href='@Url.Action("DeletePicture", "Users", new { imageName = @Model.ImageName, id = Model.ID })'" class="btn btn-danger" />
 
             </div>
         </div>
@@ -114,4 +107,3 @@
 <div style="clear: both">
     @Html.ActionLink("Home", "Index", "Home")
 </div>
-

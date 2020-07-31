@@ -2,7 +2,7 @@
 @using PhonebookMVC.ViewModels.Contacts
 @model ContactsListVM
 
-<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css"/>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Contacts";
@@ -11,15 +11,16 @@
 <h2>Contacts</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateEdit")
+    @Html.ActionLink("Create New", "CreateEdit", null, new { @class = "btn btn-success" })
 </p>
 
-@using (Html.BeginForm("Index", "Contacts", FormMethod.Get))
+@using (Html.BeginForm("Index", "Contacts", FormMethod.Get, new { @class = "form-inline" }))
 {
-    <p>
-        Search: @Html.TextBox("SearchString", Model.SearchString as string)
-        <input type="submit" value="Filter" />
-    </p>
+    <div class="form-group">
+        <label for="searchString" class="sr-only">Search</label>
+        @Html.TextBox("SearchString", Model.SearchString as string, new { id = "searchString", @class = "form-control mb-2 mr-sm-2", placeholder = "Search..." })
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Filter</button>
 }
 
 <table class="table">
