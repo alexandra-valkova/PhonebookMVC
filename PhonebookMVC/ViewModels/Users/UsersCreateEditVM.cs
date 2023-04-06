@@ -21,7 +21,7 @@ namespace PhonebookMVC.ViewModels.Users
         [DataType(DataType.Password)]
         [StringLength(30, MinimumLength = 6)]
         public string Password { get; set; }
-        
+
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Repeat Password")]

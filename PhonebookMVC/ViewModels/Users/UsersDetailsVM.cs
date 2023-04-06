@@ -9,7 +9,7 @@ namespace PhonebookMVC.ViewModels.Users
 
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
-        
+
         public string Username { get; set; }
 
         [EmailAddress]

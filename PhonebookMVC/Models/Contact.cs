@@ -5,9 +5,9 @@ namespace PhonebookMVC.Models
     public class Contact : BaseModel
     {
         public string FirstName { get; set; }
-        
+
         public string LastName { get; set; }
-        
+
         public string Email { get; set; }
 
         public int UserID { get; set; }
