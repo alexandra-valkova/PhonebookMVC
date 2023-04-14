@@ -27,12 +27,9 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="@title" class="btn btn-primary" />
+                <input type="submit" value="@title" class="btn btn-success" />
+                @Html.ActionLink("Back to List", "Index", new { id = Model.Contact.ID }, new { @class = "btn btn-secondary" })
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index", new { id = Model.Contact.ID })
-</div>

@@ -56,6 +56,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "CreateEdit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "CreateEdit", new { id = Model.ID }, new { @class = "btn btn-success" })
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
 </p>

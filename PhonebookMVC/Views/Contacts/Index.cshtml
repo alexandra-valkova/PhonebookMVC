@@ -14,7 +14,7 @@
 <h2>Contacts</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateEdit", null, new { @class = "btn btn-success" })
+    @Html.ActionLink("Create New", "CreateEdit", null, new { @class = "btn btn-primary" })
 </p>
 
 @using (Html.BeginForm("Index", "Contacts", FormMethod.Get, new { @class = "form-inline" }))
@@ -23,37 +23,39 @@
         <label for="searchString" class="sr-only">Search</label>
         @Html.TextBox("SearchString", Model.SearchString as string, new { id = "searchString", @class = "form-control mb-2 mr-sm-2", placeholder = "Search..." })
     </div>
-    <button type="submit" class="btn btn-primary mb-2">Filter</button>
+    <button type="submit" class="btn btn-info mb-2">Filter</button>
 }
 
-<table class="table">
-    <tr>
-        <th>
-            @{
-                Model.RouteDictionary["SortOrder"] = Model.SortOrder == null || Model.SortOrder != ContactSorting.FirstNameAsc ? ContactSorting.FirstNameAsc : ContactSorting.FirstNameDesc;
-                @Html.ActionLink("First Name", "Index", Model.RouteDictionary)
-            }
-        </th>
-        <th>
-            @{
-                Model.RouteDictionary["SortOrder"] = Model.SortOrder != ContactSorting.LastNameAsc ? ContactSorting.LastNameAsc : ContactSorting.LastNameDesc;
-                @Html.ActionLink("Last Name", "Index", Model.RouteDictionary)
-            }
-        </th>
-        <th>
-            @{
-                Model.RouteDictionary["SortOrder"] = Model.SortOrder != ContactSorting.EmailAsc ? ContactSorting.EmailAsc : ContactSorting.EmailDesc;
-                @Html.ActionLink("Email", "Index", Model.RouteDictionary)
-            }
-        </th>
-        <th>
-            Groups
-        </th>
-        <th>
-            Phones
-        </th>
-        <th></th>
-    </tr>
+<table class="table table-hover table-borderless">
+    <thead class="table-light">
+        <tr>
+            <th>
+                @{
+                    Model.RouteDictionary["SortOrder"] = Model.SortOrder == null || Model.SortOrder != ContactSorting.FirstNameAsc ? ContactSorting.FirstNameAsc : ContactSorting.FirstNameDesc;
+                    @Html.ActionLink("First Name", "Index", Model.RouteDictionary)
+                }
+            </th>
+            <th>
+                @{
+                    Model.RouteDictionary["SortOrder"] = Model.SortOrder != ContactSorting.LastNameAsc ? ContactSorting.LastNameAsc : ContactSorting.LastNameDesc;
+                    @Html.ActionLink("Last Name", "Index", Model.RouteDictionary)
+                }
+            </th>
+            <th>
+                @{
+                    Model.RouteDictionary["SortOrder"] = Model.SortOrder != ContactSorting.EmailAsc ? ContactSorting.EmailAsc : ContactSorting.EmailDesc;
+                    @Html.ActionLink("Email", "Index", Model.RouteDictionary)
+                }
+            </th>
+            <th>
+                Groups
+            </th>
+            <th>
+                Phones
+            </th>
+            <th></th>
+        </tr>
+    </thead>
 
     @foreach (var item in Model.PagedContacts)
     {
@@ -75,12 +77,12 @@
                 }
             </td>
             <td>
-                @Html.ActionLink("Phones", "Index", "Phones", new { id = item.ID }, null)
+                @Html.ActionLink("Phones", "Index", "Phones", new { id = item.ID }, new { @class = "btn btn-outline-info" })
             </td>
             <td>
-                @Html.ActionLink("Edit", "CreateEdit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                @Html.ActionLink("Edit", "CreateEdit", new { id = item.ID }, new { @class = "btn btn-outline-success" })
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-outline-secondary" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-outline-danger" })
             </td>
         </tr>
     }

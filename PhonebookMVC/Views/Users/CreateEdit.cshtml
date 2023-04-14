@@ -103,14 +103,14 @@
         <div class="form-group">
             <div class="col-md-offset-4 col-md-8">
                 <input type="submit" value="Upload" class="btn btn-success" />
-                <input type="submit" value="Remove" onclick="location.href='@Url.Action("DeletePicture", "Users", new { imageName = @Model.ImageName, id = Model.ID })'" class="btn btn-danger" />
+                <input type="submit" value="Remove" onclick="location.href='@Url.Action("DeletePicture", "Users", new { imageName = @Model.ImageName, id = Model.ID })'" class="btn btn-warning" />
 
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-4 col-md-8">
-                @Html.ActionLink("Delete picture", "DeletePicture", new { imageName = @Model.ImageName, id = Model.ID })
+                @Html.ActionLink("Delete picture", "DeletePicture", new { imageName = @Model.ImageName, id = Model.ID }, new { @class = "btn btn-danger" })
             </div>
         </div>
 
@@ -118,5 +118,5 @@
 }
 
 <div style="clear: both">
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
 </div>

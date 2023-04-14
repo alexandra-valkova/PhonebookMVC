@@ -7,15 +7,17 @@
 <h2>Groups</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateEdit", null, new { @class = "btn btn-success" })
+    @Html.ActionLink("Create New", "CreateEdit", null, new { @class = "btn btn-primary" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            Name
-        </th>
-        <th></th>
-    </tr>
+<table class="table table-hover table-borderless">
+    <thead class="table-light">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
 
     @foreach (var item in Model.Entities)
     {
@@ -24,11 +26,10 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.ActionLink("Edit", "CreateEdit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                @Html.ActionLink("Edit", "CreateEdit", new { id = item.ID }, new { @class = "btn btn-outline-success" })
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-outline-secondary" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-outline-danger" })
             </td>
         </tr>
     }
-
 </table>

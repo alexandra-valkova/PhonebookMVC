@@ -14,7 +14,7 @@
 <h2>Users</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateEdit", null, new { @class = "btn btn-success" })
+    @Html.ActionLink("Create New", "CreateEdit", null, new { @class = "btn btn-primary" })
 </p>
 
 @using (Html.BeginForm("Index", "Users", FormMethod.Get, new { @class = "form-inline" }))
@@ -23,40 +23,42 @@
         <label for="searchString" class="sr-only">Search</label>
         @Html.TextBox("SearchString", Model.SearchString as string, new { id = "searchString", @class = "form-control mb-2 mr-sm-2", placeholder = "Search..." })
     </div>
-    <button type="submit" class="btn btn-primary mb-2">Filter</button>
+    <button type="submit" class="btn btn-info mb-2">Filter</button>
 }
-<table class="table">
-    <tr>
-        <th>
-            @{
-                Model.RouteDictionary["SortOrder"] = Model.SortOrder == null || Model.SortOrder != UserSorting.FirstNameAsc ? UserSorting.FirstNameAsc : UserSorting.FirstNameDesc;
-                @Html.ActionLink("First Name", "Index", Model.RouteDictionary)
-            }
-        </th>
-        <th>
-            @{
-                Model.RouteDictionary["SortOrder"] = Model.SortOrder != UserSorting.LastNameAsc ? UserSorting.LastNameAsc : UserSorting.LastNameDesc;
-                @Html.ActionLink("Last Name", "Index", Model.RouteDictionary)
-            }
-        </th>
-        <th>
-            @{
-                Model.RouteDictionary["SortOrder"] = Model.SortOrder != UserSorting.UsernameAsc ? UserSorting.UsernameAsc : UserSorting.UsernameDesc;
-                @Html.ActionLink("Username", "Index", Model.RouteDictionary)
-            }
-        </th>
-        <th>
-            @{
-                Model.RouteDictionary["SortOrder"] = Model.SortOrder != UserSorting.EmailAsc ? UserSorting.EmailAsc : UserSorting.EmailDesc;
-                @Html.ActionLink("Email", "Index", Model.RouteDictionary)
-            }
-        </th>
-        <th>
-            Admin
-        </th>
-        <th>
-        </th>
-    </tr>
+<table class="table table-hover table-borderless">
+    <thead class="table-light">
+        <tr>
+            <th>
+                @{
+                    Model.RouteDictionary["SortOrder"] = Model.SortOrder == null || Model.SortOrder != UserSorting.FirstNameAsc ? UserSorting.FirstNameAsc : UserSorting.FirstNameDesc;
+                    @Html.ActionLink("First Name", "Index", Model.RouteDictionary)
+                }
+            </th>
+            <th>
+                @{
+                    Model.RouteDictionary["SortOrder"] = Model.SortOrder != UserSorting.LastNameAsc ? UserSorting.LastNameAsc : UserSorting.LastNameDesc;
+                    @Html.ActionLink("Last Name", "Index", Model.RouteDictionary)
+                }
+            </th>
+            <th>
+                @{
+                    Model.RouteDictionary["SortOrder"] = Model.SortOrder != UserSorting.UsernameAsc ? UserSorting.UsernameAsc : UserSorting.UsernameDesc;
+                    @Html.ActionLink("Username", "Index", Model.RouteDictionary)
+                }
+            </th>
+            <th>
+                @{
+                    Model.RouteDictionary["SortOrder"] = Model.SortOrder != UserSorting.EmailAsc ? UserSorting.EmailAsc : UserSorting.EmailDesc;
+                    @Html.ActionLink("Email", "Index", Model.RouteDictionary)
+                }
+            </th>
+            <th>
+                Admin
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
 
     @foreach (var item in Model.PagedUsers)
     {
@@ -77,11 +79,11 @@
                 @Html.DisplayFor(modelItem => item.IsAdmin)
             </td>
             <td>
-                @Html.ActionLink("Edit", "CreateEdit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID })
+                @Html.ActionLink("Edit", "CreateEdit", new { id = item.ID }, new { @class = "btn btn-outline-success" })
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-outline-secondary" })
                 @if (PhonebookMVC.Services.AuthenticationService.LoggedUser.ID != item.ID)
                 {
-                    @Html.Raw("| ") @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-outline-danger" })
                 }
             </td>
         </tr>
