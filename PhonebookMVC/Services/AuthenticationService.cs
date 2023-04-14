@@ -7,13 +7,7 @@ namespace PhonebookMVC.Services
 {
     public static class AuthenticationService
     {
-        public static bool IsLogged
-        {
-            get
-            {
-                return LoggedUser != null;
-            }
-        }
+        public static bool IsLogged => LoggedUser != null;
 
         public static User LoggedUser
         {

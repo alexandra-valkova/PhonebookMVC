@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Phonebook</title>
     @Styles.Render("~/Content/css")
     @RenderSection("styles", required: false)
 </head>
@@ -16,12 +16,7 @@
             @Html.ActionLink("Phonebook", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             <div class="collapse navbar-collapse" id="navbarMenu">
                 <ul class="navbar-nav mr-auto">
-                    @if (!PhonebookMVC.Services.AuthenticationService.IsLogged)
-                    {
-                        <li class="nav-item">@Html.ActionLink("Login", "Login", "Account", null, new { @class = "nav-link" })</li>
-                        <li class="nav-item">@Html.ActionLink("Register", "Register", "Account", null, new { @class = "nav-link" })</li>
-                    }
-                    else
+                    @if (PhonebookMVC.Services.AuthenticationService.IsLogged)
                     {
                         if (PhonebookMVC.Services.AuthenticationService.LoggedUser.IsAdmin)
                         {
@@ -31,6 +26,11 @@
                         <li class="nav-item">@Html.ActionLink("Groups", "Index", "Groups", null, new { @class = "nav-link" })</li>
                         <li class="nav-item">@Html.ActionLink("My Profile", "MyProfile", "Account", null, new { @class = "nav-link" })</li>
                         <li class="nav-item">@Html.ActionLink("Logout", "Logout", "Account", null, new { @class = "nav-link" })</li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">@Html.ActionLink("Login", "Login", "Account", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Register", "Register", "Account", null, new { @class = "nav-link" })</li>
                     }
                 </ul>
             </div>
