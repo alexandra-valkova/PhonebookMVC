@@ -17,5 +17,7 @@ namespace PhonebookMVC.Models
         public virtual List<Phone> Phones { get; set; }
 
         public virtual List<Group> Groups { get; set; }
+
+        public virtual string FullName => $"{FirstName} {LastName}";
     }
 }

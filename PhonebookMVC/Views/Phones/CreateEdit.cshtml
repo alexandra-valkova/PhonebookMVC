@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>@Model.Contact.FirstName's Phone</h4>
+        <h4>@Model.Contact.FullName's Phone</h4>
         <hr />
         @Html.HiddenFor(model => model.ID)
         @Html.HiddenFor(model => model.ContactID)
